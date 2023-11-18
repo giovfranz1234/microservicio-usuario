@@ -11,17 +11,16 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/HelpDesk")
-@CrossOrigin
+@RequestMapping
 public class UsuarioController {
      @Autowired
     private UsuarioService usuarioService;
 
-     @GetMapping("/usuarios")
+     @GetMapping
       public ResponseEntity<?> obtUsuarios(){
          return ResponseEntity.ok().body(usuarioService.findAll());
      }
-     @GetMapping("/usuario/{id}")
+     @GetMapping("/{id}")
      public ResponseEntity<?> obtUsuario(@PathVariable Long id){
          Optional<Usuario> o = usuarioService.findById(id);
          if (o.isEmpty()){
@@ -29,12 +28,12 @@ public class UsuarioController {
          }
          return ResponseEntity.ok(o.get());
      }
-     @PostMapping("/crearUs")
+     @PostMapping
     public ResponseEntity<?> crear(@RequestBody Usuario usuario){
          return ResponseEntity.status(HttpStatus.CREATED).body(usuarioService.save(usuario));
 
      }
-     @PutMapping("/actualizarUS/{id}")
+     @PutMapping("/{id}")
     public ResponseEntity<?> actualizar(@RequestBody Usuario usuario, @PathVariable Long id){
          Optional<Usuario> usuariomod= usuarioService.findById(id);
          if (usuariomod.isEmpty()){
@@ -52,7 +51,7 @@ public class UsuarioController {
          return ResponseEntity.status(HttpStatus.CREATED).body(usuarioService.save(usuarioDB));
 
      }
-     @DeleteMapping("/borrarUS/{id}")
+     @DeleteMapping("/{id}")
      public ResponseEntity<?> eliminar(@PathVariable Long id){
          usuarioService.deleteById(id);
          return ResponseEntity.noContent().build();
