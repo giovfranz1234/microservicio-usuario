@@ -39,14 +39,14 @@ public class UsuarioController {
             return ResponseEntity.notFound().build();
          }
          Usuario usuarioDB = usuariomod.get();
-         usuario.setNombres(usuarioDB.getNombres());
-         usuario.setPaterno(usuarioDB.getPaterno());
-         usuario.setMaterno(usuarioDB.getMaterno());
-         usuario.setCorreoElectronico(usuarioDB.getCorreoElectronico());
-         usuario.setDocIdentidad(usuarioDB.getDocIdentidad());
-         usuario.setEstado(usuarioDB.getEstado());
-         usuario.setTelefono(usuarioDB.getTelefono());
-         usuario.setRol(usuarioDB.getRol());
+         usuarioDB.setNombres(usuario.getNombres());
+         usuarioDB.setPaterno(usuario.getPaterno());
+         usuarioDB.setMaterno(usuario.getMaterno());
+         usuarioDB.setCorreoElectronico(usuario.getCorreoElectronico());
+         usuarioDB.setDocIdentidad(usuario.getDocIdentidad());
+         usuarioDB.setEstado(usuario.getEstado());
+         usuarioDB.setTelefono(usuario.getTelefono());
+         usuarioDB.setRol(usuario.getRol());
          return ResponseEntity.status(HttpStatus.CREATED).body(usuarioService.save(usuarioDB));
 
      }
